@@ -1,10 +1,16 @@
 # Moviebase
 
-![main.png](./docs/movie.png)
+![main.png](./docs/main.png)
 ![mainbottom.png](./docs/mainbottom.png)
+
+Search
 ![search.png](./docs/search.png)
+
+Movie Page
 ![movie.png](./docs/movie.png)
-![history.png](./docs/movie.png)
+
+History
+![history.png](./docs/history.png)
 
 Setup:
 
