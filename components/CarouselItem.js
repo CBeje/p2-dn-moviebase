@@ -2,20 +2,21 @@ import {
   Badge,
   Image,
   LinkOverlay,
+  HStack,
   Stack,
   Heading,
   Text,
 } from "@chakra-ui/react";
 
 import { buildImageUrl } from "utils/api";
+import WatchlistButton from "components/WatchlistButton";
 const CarouselItem = ({ movie, genre, rating }) => {
   return (
     <>
-      <LinkOverlay
-        href={`/movies/${movie.id || movie.data.id}`}
-        passHref
-        legacyBehavior
-      >
+      <HStack pos="absolute" zIndex={1000} top={2} right={2}>
+        <WatchlistButton MovieID={movie.id || movie.data.id} />
+      </HStack>
+      <LinkOverlay href={`/movies/${movie.id || movie.data.id}`}>
         <Image
           objectFit="cover"
           objectPosition="center"

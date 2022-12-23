@@ -3,14 +3,17 @@ import Link from "next/link";
 import {
   Box,
   Heading,
+  Image,
   Button,
   Container,
   useDisclosure,
   HStack,
   Stack,
   Spacer,
+  Text,
   VStack,
   Grid,
+  Center,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
@@ -36,9 +39,11 @@ function Header() {
           py="1.5rem"
         >
           <HStack justify="space-between">
-            <MenuItem href="/" mr={8}>
-              <Heading size="lg">Moviebase</Heading>
-            </MenuItem>
+            <Link href="/">
+              <Heading id="appTitle" size="lg" mr={8}>
+                Moviebase
+              </Heading>
+            </Link>
 
             <Box display={["block", , "none"]} onClick={onToggle}>
               <Button variant="outline">
@@ -87,6 +92,13 @@ export default function Layout({ title, children }) {
           </Box>
         </VStack>
       </Grid>
+      <Box align="center" w="full" my="5">
+        <Image maxHeight="15px" src="TMDB_Logo.svg"></Image>
+        <Text>
+          This product uses the TMDB API but is not endorsed or certified by
+          TMDB.
+        </Text>
+      </Box>
     </>
   );
 }

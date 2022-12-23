@@ -24,6 +24,12 @@ export default function WatchlistButton({ MovieID }) {
               method: data.found ? "DELETE" : "PUT",
             })
           );
+          mutate(`/api/history/${id}`, () =>
+            fetcher(`/api/history/${id}`, {
+              method: "DELETE",
+            })
+          );
+          location.reload();
         }}
       >
         <CheckCircleIcon />

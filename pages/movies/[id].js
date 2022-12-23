@@ -63,11 +63,9 @@ const MovieContent = () => {
       <Stack>
         <HStack justify="space-between">
           <Heading as="h2">{data.title}</Heading>
-          <Box>
-            <Tag colorScheme="purple" variant="solid">
-              {data.release_date}
-            </Tag>
-          </Box>
+          <Heading as="span" size="sm">
+            {data.release_date?.substring(0, 4)}
+          </Heading>
         </HStack>
         <Box>{data.tagline}</Box>
 

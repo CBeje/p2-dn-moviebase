@@ -2,6 +2,7 @@ import Layout from "components/Layout";
 import useSWR from "swr";
 
 import {
+  Box,
   Badge,
   Button,
   Card,
@@ -35,13 +36,12 @@ export const History = () => {
   }
   return (
     <>
-      {data.length > 0 ? (
-        data.map(({ id, title, release_date, poster_path }) => (
-          <Stack spacing="2" direction="row">
+      {data.movies.length > 0 ? (
+        data.movies.map(({ id, title, release_date, poster_path }, index) => (
+          <Stack spacing="2" direction="row" key={id}>
             <Card
               borderRadius="0"
               direction={{ base: "column", sm: "row" }}
-              key={id}
               overflow="hidden"
               variant="elevated"
               w={(200, 500)}
@@ -70,6 +70,9 @@ export const History = () => {
                       <HistoryButton MovieID={id} />
                     </Stack>
                   </Heading>
+                  <Box mt="2">
+                    Watched on: {data.history[index].date.substring(0, 10)}
+                  </Box>
                   <Stack my="4">
                     <LinkBox>
                       <LinkOverlay href={`/movies/${id}`}>
@@ -98,6 +101,9 @@ export default function HistoryCollection() {
   return (
     <Layout title="History">
       <Container>
+        <Heading as="h3" size="md" textAlign="left" my="5" color="#6897bb">
+          History
+        </Heading>
         <SimpleGrid columns={3} spacingX="20px" spacingY="20px">
           <History />
         </SimpleGrid>

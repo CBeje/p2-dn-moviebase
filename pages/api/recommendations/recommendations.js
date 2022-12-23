@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     res.status(200).json(...history);
   } else {
     const similarMovie = Math.floor(Math.random() * 10000);
-    console.log(similarMovie);
     res.status(200).json({
       id: similarMovie,
     });

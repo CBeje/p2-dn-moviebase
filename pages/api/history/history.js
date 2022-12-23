@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       })
     );
 
-    res.status(200).json(movies);
+    res.status(200).json({ movies: movies, history: history });
   } else {
     res.status(200).json({ data: "No items in history" });
   }

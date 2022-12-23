@@ -18,7 +18,7 @@ export default function IndexPage() {
 
   const trendingMovies = trending.data?.results;
   const watchlistMovies = watchlist.data;
-  const historyMovies = history.data;
+  const historyMovies = history.data?.movies;
 
   if (!trendingMovies) {
     return (

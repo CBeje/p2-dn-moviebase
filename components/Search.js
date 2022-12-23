@@ -1,32 +1,23 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { buildImageUrl } from "utils/api";
 import useSWR from "swr";
 import {
   Input,
   Image,
   IconButton,
-  Container,
-  UnorderedList,
   LinkOverlay,
   Heading,
-  ListItem,
   Progress,
   Text,
   InputGroup,
   InputRightElement,
-  VStack,
-  Button,
   Badge,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
   Stack,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import Layout from "components/Layout";
 
 export function SearchBar() {
   const router = useRouter();
@@ -88,35 +79,36 @@ export function SearchResults() {
     <Stack spacing="4">
       {data.results.map(
         ({ id, title, overview, release_date, poster_path, vote_average }) => (
-          <Card
-            direction={{ base: "column", sm: "row" }}
-            key={id}
-            overflow="hidden"
-            variant="elevated"
-          >
-            <Image
-              objectFit="cover"
-              maxW={{ base: "100%", sm: "200px" }}
-              src={buildImageUrl(poster_path)}
-              alt="Movie Poster"
-            />
+          <Stack key={id}>
+            <Card
+              direction={{ base: "column", sm: "row" }}
+              overflow="hidden"
+              variant="elevated"
+            >
+              <Image
+                objectFit="cover"
+                maxW={{ base: "100%", sm: "200px" }}
+                src={buildImageUrl(poster_path)}
+                alt="Movie Poster"
+              />
 
-            <Stack>
-              <LinkOverlay href={`/movies/${id}`} passHref legacyBehavior>
-                <CardBody>
-                  <Heading size="md">
-                    {title}{" "}
-                    <Heading as="span" size="sm">
-                      ({release_date?.substring(0, 4)})
+              <Stack>
+                <LinkOverlay href={`/movies/${id}`}>
+                  <CardBody>
+                    <Heading size="md">
+                      {title}{" "}
+                      <Heading as="span" size="sm">
+                        ({release_date?.substring(0, 4)})
+                      </Heading>
                     </Heading>
-                  </Heading>
-                  <Text as="span">Rating: </Text>
-                  <Badge>{vote_average}/10</Badge>
-                  <Text py="2">{overview}</Text>
-                </CardBody>
-              </LinkOverlay>
-            </Stack>
-          </Card>
+                    <Text as="span">Rating: </Text>
+                    <Badge>{vote_average}/10</Badge>
+                    <Text py="2">{overview}</Text>
+                  </CardBody>
+                </LinkOverlay>
+              </Stack>
+            </Card>
+          </Stack>
         )
       )}
     </Stack>

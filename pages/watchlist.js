@@ -15,16 +15,16 @@ import {
   LinkBox,
   LinkOverlay,
   Stack,
-  Wrap,
 } from "@chakra-ui/react";
 import { buildImageUrl } from "utils/api";
 import HistoryButton from "components/HistoryButton";
 import WatchlistButton from "components/WatchlistButton";
 
 export const Watchlist = () => {
+  //let dateAdded = new Date().toLocaleDateString();
   const { data, error } = useSWR(`/api/watchlist/watchlist`);
   if (error) {
-    return <Center h="full">Error</Center>;
+    return <Center h="full">{JSON.stringify(error)}</Center>;
   }
 
   if (!data) {
@@ -37,12 +37,11 @@ export const Watchlist = () => {
   return (
     <>
       {data.length > 0 ? (
-        data.map(({ id, title, release_date, poster_path }) => (
-          <Wrap spacing="2" direction="row">
+        data.map(({ id, title, release_date, poster_path, genres }) => (
+          <Stack spacing="2" direction="row" key={id}>
             <Card
               borderRadius="0"
               direction={{ base: "column", sm: "row" }}
-              key={id}
               overflow="hidden"
               variant="elevated"
               w={(200, 500)}
@@ -61,8 +60,8 @@ export const Watchlist = () => {
                     <Heading as="span" size="sm">
                       ({release_date?.substring(0, 4)})
                     </Heading>
-                    <Stack direction="row" flexWrap="wrap" mb="4">
-                      {data.genres?.map((genre) => (
+                    <Stack direction="row" flexWrap="wrap" my="2">
+                      {genres?.map((genre) => (
                         <Badge key={genre.id}>{genre.name}</Badge>
                       ))}
                     </Stack>
@@ -72,7 +71,7 @@ export const Watchlist = () => {
                     </Stack>
                   </Heading>
                   <Stack my="4">
-                    <LinkBox>
+                    <LinkBox width="150px">
                       <LinkOverlay href={`/movies/${id}`}>
                         <Button colorScheme="blue" size="md" width="150px">
                           Details
@@ -83,7 +82,7 @@ export const Watchlist = () => {
                 </CardBody>
               </Stack>
             </Card>
-          </Wrap>
+          </Stack>
         ))
       ) : (
         <Center h="full">
@@ -99,7 +98,10 @@ export default function WatchlistCollection() {
   return (
     <Layout title="Watchlist">
       <Container>
-        <SimpleGrid columns={3} spacingX="20px" spacingY="20px">
+        <Heading as="h3" size="md" textAlign="left" my="5" color="#6897bb">
+          Watchlist
+        </Heading>
+        <SimpleGrid columns={[1, 2, 3]} spacingX="20px" spacingY="20px">
           <Watchlist />
         </SimpleGrid>
       </Container>
