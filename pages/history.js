@@ -14,12 +14,11 @@ import {
   Heading,
   Image,
   Stack,
-  LinkOverlay,
-  LinkBox,
 } from "@chakra-ui/react";
 import { buildImageUrl } from "utils/api";
 import HistoryButton from "components/HistoryButton";
 import WatchlistButton from "components/WatchlistButton";
+import Link from "next/link";
 
 export const History = () => {
   const { data, error } = useSWR(`/api/history/history`);
@@ -36,7 +35,7 @@ export const History = () => {
   }
   return (
     <>
-      {data.movies.length > 0 ? (
+      {data.movies ? (
         data.movies.map(({ id, title, release_date, poster_path }, index) => (
           <Stack spacing="2" direction="row" key={id}>
             <Card
@@ -74,13 +73,11 @@ export const History = () => {
                     Watched on: {data.history[index].date.substring(0, 10)}
                   </Box>
                   <Stack my="4">
-                    <LinkBox>
-                      <LinkOverlay href={`/movies/${id}`}>
-                        <Button colorScheme="blue" size="md" width="150px">
-                          Details
-                        </Button>
-                      </LinkOverlay>
-                    </LinkBox>
+                    <Link href={`/movies/${id}`}>
+                      <Button colorScheme="blue" size="md" width="150px">
+                        Details
+                      </Button>
+                    </Link>
                   </Stack>
                 </CardBody>
               </Stack>

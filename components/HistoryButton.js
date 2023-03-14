@@ -22,14 +22,13 @@ export default function HistoryButton({ MovieID }) {
           mutate(`/api/history/${id}`, () =>
             fetcher(`/api/history/${id}`, {
               method: data.found ? "DELETE" : "PUT",
-            })
+            }).then(() => mutate(`api/history/history`))
           );
           mutate(`/api/watchlist/${id}`, () =>
             fetcher(`/api/watchlist/${id}`, {
               method: "DELETE",
             })
           );
-          location.reload();
         }}
       >
         <CalendarIcon />

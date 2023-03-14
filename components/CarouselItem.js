@@ -28,7 +28,14 @@ const CarouselItem = ({ movie, genre, rating }) => {
           alt="Movie poster"
         />
         <Stack py="3" align="center">
-          <Heading as="h4" size="md" my="1" mx="2" textAlign="center">
+          <Heading
+            as="h4"
+            size="md"
+            my="1"
+            mx="2"
+            textAlign="center"
+            noOfLines={1}
+          >
             {movie.title || movie.data.title}
           </Heading>
           {genre ? (

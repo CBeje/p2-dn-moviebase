@@ -13,6 +13,7 @@ import {
 import React from "react";
 import useSWR from "swr";
 import { buildImageUrl } from "utils/api";
+import Link from "next/link";
 
 const Recommendations = ({ id }) => {
   const { data, error } = useSWR(id && `/api/recommendations/${id}`);
@@ -56,23 +57,23 @@ const Recommendations = ({ id }) => {
                 alt="Movie Poster"
               />
               <Stack>
-                <LinkOverlay
-                  href={`/movies/${item.id}`}
-                  passHref
-                  legacyBehavior
-                >
-                  <CardBody>
-                    <Heading size="md">
-                      {item.title}{" "}
-                      <Heading as="span" size="sm">
-                        ({item.release_date?.substring(0, 4)})
+                <Link href={`/movies/${item.id}`} passHref legacyBehavior>
+                  <LinkOverlay>
+                    <CardBody>
+                      <Heading size="md">
+                        {item.title}{" "}
+                        <Heading as="span" size="sm">
+                          ({item.release_date?.substring(0, 4)})
+                        </Heading>
                       </Heading>
-                    </Heading>
-                    <Text as="span">Rating: </Text>
-                    <Badge>{Math.round(item.vote_average * 10) / 10}/10</Badge>
-                    <Text py="2">{item.overview}</Text>
-                  </CardBody>
-                </LinkOverlay>
+                      <Text as="span">Rating: </Text>
+                      <Badge>
+                        {Math.round(item.vote_average * 10) / 10}/10
+                      </Badge>
+                      <Text py="2">{item.overview}</Text>
+                    </CardBody>
+                  </LinkOverlay>
+                </Link>
               </Stack>
             </Card>
           ))

@@ -84,6 +84,7 @@ export function SearchResults() {
               direction={{ base: "column", sm: "row" }}
               overflow="hidden"
               variant="elevated"
+              borderRadius="0"
             >
               <Image
                 objectFit="cover"

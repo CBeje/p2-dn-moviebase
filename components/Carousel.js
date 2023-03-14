@@ -25,8 +25,8 @@ const Carousel = ({ data, genre, rating, slides, height }) => {
             gap: "1rem",
           }}
         >
-          {data?.map((movie) => (
-            <SplideSlide key={movie?.id || movie.data.id}>
+          {data?.filter(Boolean).map((movie) => (
+            <SplideSlide key={movie.id || movie.data.id}>
               <Card w="100%" h="100%" cursor="pointer" borderRadius="0">
                 <CarouselItem movie={movie} genre={genre} rating={rating} />
               </Card>
