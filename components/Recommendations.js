@@ -54,7 +54,7 @@ const Recommendations = ({ id }) => {
                 objectFit="cover"
                 maxW={{ base: "100%", sm: "200px" }}
                 src={buildImageUrl(item.poster_path)}
-                alt="Movie Poster"
+                alt="No Movie Poster"
               />
               <Stack>
                 <Link href={`/movies/${item.id}`} passHref legacyBehavior>

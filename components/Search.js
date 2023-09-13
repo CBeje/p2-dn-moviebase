@@ -89,8 +89,8 @@ export function SearchResults() {
               <Image
                 objectFit="cover"
                 maxW={{ base: "100%", sm: "200px" }}
-                src={buildImageUrl(poster_path)}
-                alt="Movie Poster"
+                src={poster_path ? buildImageUrl(poster_path) : "NoPoster.svg"}
+                alt={poster_path ? title : "No Movie Poster"}
               />
 
               <Stack>
