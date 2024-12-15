@@ -93,7 +93,7 @@ export default function Layout({ title, children }) {
         </VStack>
       </Grid>
       <Box align="center" w="full" my="5">
-        <Image maxHeight="15px" src="TMDB_Logo.svg"></Image>
+        <Image maxHeight="15px" src="\TMDB_Logo.svg"></Image>
         <Text>
           This product uses the TMDB API but is not endorsed or certified by
           TMDB.

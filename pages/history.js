@@ -101,7 +101,11 @@ export default function HistoryCollection() {
         <Heading as="h3" size="md" textAlign="left" my="5" color="#6897bb">
           History
         </Heading>
-        <SimpleGrid columns={3} spacingX="20px" spacingY="20px">
+        <SimpleGrid
+          columns={{ sm: 1, md: 2, xl: 3 }}
+          spacingX="20px"
+          spacingY="20px"
+        >
           <History />
         </SimpleGrid>
       </Container>
